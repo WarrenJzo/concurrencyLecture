@@ -14,7 +14,6 @@ public class FairScheduler {
         while (!current.isEmpty()) {
             List<Future<StoppingBehavior>> futures = new ArrayList<>();
 
-            // Étape 1 : soumettre tous les comportements pour un "tour"
             for (StoppingBehavior behavior : current) {
                 Future<StoppingBehavior> future = executor.submit(() -> {
                     behavior.step();
@@ -23,7 +22,6 @@ public class FairScheduler {
                 futures.add(future);
             }
 
-            // Étape 2 : récupérer les survivants
             List<StoppingBehavior> next = new ArrayList<>();
             for (Future<StoppingBehavior> future : futures) {
                 try {
