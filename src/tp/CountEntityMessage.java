@@ -1,8 +1,6 @@
 package tp;
 
-import java.util.function.Predicate;
-
-public class CountingEntity implements MessageSender {
+public class CountEntityMessage implements MessageSender {
 
     private final String name;
     private int localCount = 0;
@@ -14,7 +12,7 @@ public class CountingEntity implements MessageSender {
     private int lastGlobalCount = 0;
     private boolean done = false;
 
-    public CountingEntity(String name) {
+    public CountEntityMessage(String name) {
         this.name = name;
     }
 

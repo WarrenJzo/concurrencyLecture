@@ -1,10 +1,10 @@
 package tp;
 
-public class CounterEntity implements StoppingBehavior {
+public class CountEntity implements StoppingBehavior {
     private final String name;
     private int counter = 0;
 
-    public CounterEntity(String name) {
+    public CountEntity(String name) {
         this.name = name;
     }
 

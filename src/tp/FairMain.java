@@ -8,7 +8,7 @@ public class FairMain {
         List<StoppingBehavior> behaviors = new ArrayList<>();
 
         for (int i = 1; i <= 100; i++) {
-            behaviors.add(new CounterEntity("Entity-" + i));
+            behaviors.add(new CountEntity("Entity-" + i));
         }
 
         FairScheduler fairScheduler = new FairScheduler();

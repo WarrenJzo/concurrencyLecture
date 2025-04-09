@@ -7,17 +7,17 @@ public class Main {
     public static void main(String[] args) {
         int entityCount = 10;
 
-        List<CountingEntity> entities = new ArrayList<>();
+        List<CountEntityMessage> entities = new ArrayList<>();
         List<StoppingBehavior> behaviors = new ArrayList<>();
 
         for (int i = 0; i < entityCount; i++) {
-            CountingEntity entity = new CountingEntity("Entite numéro " + i);
+            CountEntityMessage entity = new CountEntityMessage("Entite numéro " + i);
             entities.add(entity);
         }
 
         for (int i = 0; i < entityCount; i++) {
-            CountingEntity current = entities.get(i);
-            CountingEntity next = entities.get((i + 1) % entityCount);
+            CountEntityMessage current = entities.get(i);
+            CountEntityMessage next = entities.get((i + 1) % entityCount);
             current.setNextEntity(next.getReceiver());
             behaviors.add(current.getBehavior());
         }
