@@ -1,12 +1,33 @@
 package tp;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        BehaviorScheduler scheduler = new BehaviorScheduler();
+        int entityCount = 10;
 
-        for (int i = 1; i <= 100; i++) {
-            CounterEntity entity = new CounterEntity("Entity-" + i);
-            scheduler.callBehavior(entity);
+        List<CountingEntity> entities = new ArrayList<>();
+        List<StoppingBehavior> behaviors = new ArrayList<>();
+
+        for (int i = 0; i < entityCount; i++) {
+            CountingEntity entity = new CountingEntity("Entity-" + i);
+            entities.add(entity);
         }
+
+        // relier chaque entité à la suivante (cercle)
+        for (int i = 0; i < entityCount; i++) {
+            CountingEntity current = entities.get(i);
+            CountingEntity next = entities.get((i + 1) % entityCount);
+            current.setNextEntity(next.getReceiver());
+            behaviors.add(current.getBehavior());
+        }
+
+        // on commence la chaîne avec un message
+        entities.get(0).sendMessage(entities.get(0).getReceiver(), new CountMessage(1));
+
+        // scheduler équitable
+        FairScheduler scheduler = new FairScheduler();
+        scheduler.schedule(behaviors);
     }
 }
