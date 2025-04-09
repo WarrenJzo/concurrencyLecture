@@ -7,19 +7,16 @@ public class BehaviorScheduler {
 
     private final ExecutorService executor;
 
-
     public BehaviorScheduler() {
         executor = Executors.newCachedThreadPool();
     }
-
 
     public void callBehavior(StoppingBehavior behavior) {
         executor.submit(() -> {
             behavior.step();
             if (!behavior.wantsToStop()) {
-                executor.submit(() -> callBehavior(behavior));
+                callBehavior(behavior); // soumet à nouveau si pas terminé
             }
         });
     }
-
 }
