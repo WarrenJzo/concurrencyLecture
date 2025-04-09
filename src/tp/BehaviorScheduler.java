@@ -15,7 +15,7 @@ public class BehaviorScheduler {
         executor.submit(() -> {
             behavior.step();
             if (!behavior.wantsToStop()) {
-                callBehavior(behavior); // soumet à nouveau si pas terminé
+                callBehavior(behavior);
             }
         });
     }
