@@ -15,7 +15,6 @@ public class Main {
             entities.add(entity);
         }
 
-        // relier chaque entité à la suivante (cercle)
         for (int i = 0; i < entityCount; i++) {
             CountingEntity current = entities.get(i);
             CountingEntity next = entities.get((i + 1) % entityCount);
@@ -23,10 +22,8 @@ public class Main {
             behaviors.add(current.getBehavior());
         }
 
-        // on commence la chaîne avec un message
         entities.get(0).sendMessage(entities.get(0).getReceiver(), new CountMessage(1));
 
-        // scheduler équitable
         FairScheduler scheduler = new FairScheduler();
         scheduler.schedule(behaviors);
     }
